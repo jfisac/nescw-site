@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NESCW – Saturday, May 2nd 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & tokens ───────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --orange:       #F58025;
+      --orange-dark:  #c75a00;
+      --black:        #1a1a1a;
+      --gray-90:      #2d2d2d;
+      --gray-60:      #666;
+      --gray-20:      #e8e8e8;
+      --gray-05:      #f7f7f7;
+      --white:        #ffffff;
+      --max-w:        820px;
+      --radius:       4px;
+      --shadow:       0 2px 12px rgba(0,0,0,0.10);
+    }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--black);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--orange); text-decoration: none; }
+    a:hover { color: var(--orange-dark); text-decoration: underline; }
+
+    /* ── Top bar ──────────────────────────────────────────── */
+    .topbar {
+      background: var(--black);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: 48px;
+    }
+    .topbar-logo {
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-right: 2rem;
+      opacity: 0.75;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .topbar-logo:hover { opacity: 1; color: var(--orange); text-decoration: none; }
+    .topbar-nav {
+      display: flex;
+      gap: 0;
+      flex: 1;
+      overflow: hidden;
+    }
+    .topbar-nav a {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0 0.9rem;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      transition: color 0.15s, background 0.15s;
+      white-space: nowrap;
+    }
+    .topbar-nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+      text-decoration: none;
+    }
+    .topbar-nav .past { margin-left: auto; opacity: 0.45; font-weight: 400; }
+    .topbar-nav .past:hover { opacity: 0.75; }
+
+    /* ── Hero ─────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 480px;
+      background-image: url('assets/photos/robertson-peeking.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(0,0,0,0.08) 0%,
+        rgba(0,0,0,0.22) 40%,
+        rgba(0,0,0,0.72) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      padding: 0 2.5rem 2.8rem;
+      max-width: calc(var(--max-w) + 4rem);
+      width: 100%;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.6);
+    }
+    .hero-title {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.45);
+    }
+    .hero-meta {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.88;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 1.2rem;
+      align-items: center;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+    .hero-meta .sep { opacity: 0.4; }
+
+    /* ── Page wrapper ─────────────────────────────────────── */
+    .page { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── Intro strip ──────────────────────────────────────── */
+    .intro {
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--gray-20);
+    }
+    .intro p {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--gray-90);
+      margin-bottom: 1rem;
+    }
+    .intro p:last-child { margin-bottom: 0; }
+
+    /* ── Stat pills ───────────────────────────────────────── */
+    .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.5rem 0 1rem;
+    }
+    .stat-pill {
+      background: transparent;
+      border: 1.5px solid var(--orange);
+      color: var(--orange);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    /* ── Callout box ──────────────────────────────────────── */
+    .callout {
+      background: var(--gray-05);
+      border-left: 4px solid var(--orange);
+      padding: 0.9rem 1.2rem;
+      margin: 1.2rem 0;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--gray-90);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    /* ── Section ──────────────────────────────────────────── */
+    section {
+      padding: 2.8rem 0 1.5rem;
+      border-bottom: 1px solid var(--gray-20);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.6rem;
+    }
+    h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--black);
+      margin: 1.6rem 0 0.4rem;
+    }
+    p { margin-bottom: 0.9rem; }
+    p:last-child { margin-bottom: 0; }
+
+    ul { margin: 0.5rem 0 0.9rem 1.3rem; }
+    ul li { margin-bottom: 0.4rem; }
+    ul li::marker { color: var(--orange); }
+
+    /* ── CTA Button ───────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff !important;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      padding: 0.7rem 1.8rem;
+      border-radius: var(--radius);
+      text-decoration: none !important;
+      transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+      box-shadow: 0 2px 8px rgba(232,119,34,0.35);
+      margin: 0.5rem 0;
+    }
+    .btn:hover {
+      background: var(--orange-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(232,119,34,0.45);
+    }
+    .btn:active { transform: translateY(0); }
+
+    /* ── Key dates table ──────────────────────────────────── */
+    .key-dates {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.9rem;
+      margin-top: 1.2rem;
+      border: 1px solid var(--gray-20);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .key-dates tbody td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--gray-20);
+      vertical-align: top;
+    }
+    .key-dates tbody tr:last-child td { border-bottom: none; }
+    .key-dates tbody tr:nth-child(even) td { background: var(--gray-05); }
+    .key-dates .col-date {
+      font-weight: 700;
+      color: var(--orange);
+      white-space: nowrap;
+      width: 140px;
+    }
+    .key-dates .col-name {
+      font-weight: 600;
+      width: 210px;
+    }
+    .key-dates .col-desc { color: var(--gray-60); font-size: 0.85rem; }
+    .key-dates .highlight-row td { background: var(--orange) !important; color: #fff !important; }
+    .key-dates .highlight-row .col-date { color: #fff; }
+    .key-dates .highlight-row .col-desc { color: rgba(255,255,255,0.85); }
+
+    /* ── Schedule table ───────────────────────────────────── */
+    .schedule {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      border: 1px solid var(--gray-20);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .schedule tbody td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--gray-20);
+      vertical-align: top;
+    }
+    .schedule tbody tr:last-child td { border-bottom: none; }
+    .schedule tbody tr:nth-child(even) td { background: var(--gray-05); }
+    .schedule .col-time {
+      white-space: nowrap;
+      font-weight: 700;
+      color: var(--gray-60);
+      width: 145px;
+      font-size: 0.85rem;
+    }
+
+    /* ── Photo row (equal height, in About section) ───────── */
+    .photo-row {
+      display: flex;
+      gap: 0.5rem;
+      border-radius: var(--radius);
+      margin: 1.4rem 0 0.5rem;
+      overflow: hidden;
+    }
+    .photo-row-item {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      height: 200px;
+    }
+    .photo-row-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 600px) {
+      .photo-row { flex-direction: column; }
+      .photo-row-item { height: auto; aspect-ratio: 16/9; flex: none; width: 100%; }
+    }
+    .photo-caption {
+      font-size: 0.75rem;
+      color: var(--gray-60);
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    /* ── Lab tour cards ───────────────────────────────────── */
+    .lab-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.2rem 0;
+    }
+    @media (max-width: 560px) { .lab-cards { grid-template-columns: 1fr; } }
+    .lab-card {
+      border: 1px solid var(--gray-20);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.3rem;
+      background: var(--gray-05);
+      transition: box-shadow 0.2s;
+    }
+    .lab-card:hover { box-shadow: var(--shadow); }
+    .lab-card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+      color: var(--black);
+    }
+    .lab-card p {
+      font-size: 0.88rem;
+      color: var(--gray-60);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* ── Location photo ───────────────────────────────────── */
+    .location-photo {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      display: block;
+      margin-bottom: 1.6rem;
+    }
+
+    /* ── Map embed ────────────────────────────────────────── */
+    .map-embed {
+      width: 100%;
+      height: 200px;
+      border: 1px solid var(--gray-20);
+      border-radius: var(--radius);
+      margin-top: 1rem;
+      display: block;
+    }
+
+    /* ── Two-col layout ───────────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 3rem;
+    }
+    @media (max-width: 580px) { .two-col { grid-template-columns: 1fr; gap: 1rem; } }
+
+    /* ── Org grids ────────────────────────────────────────── */
+    .org-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.3rem 2rem;
+      font-size: 0.95rem;
+      margin-top: 0.3rem;
+    }
+    @media (max-width: 500px) { .org-grid { grid-template-columns: 1fr; } }
+    .org-name { font-weight: 600; }
+    .org-inst { color: var(--gray-60); font-size: 0.88rem; }
+
+    /* ── Logistics row (inline flex) ──────────────────────── */
+    .logistics-row {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: nowrap;
+      margin-top: 0.6rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* ── Sponsors ─────────────────────────────────────────── */
+    .sponsors-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem 2.5rem;
+      margin-top: 1.2rem;
+      padding: 1.5rem 1.5rem;
+      background: var(--gray-05);
+      border: 1px solid var(--gray-20);
+      border-radius: var(--radius);
+    }
+    .sponsor-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sponsor-item img {
+      max-height: 48px;
+      max-width: 160px;
+      width: auto;
+      object-fit: contain;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    .sponsor-item:hover img { opacity: 1; }
+
+    /* ── Address block ────────────────────────────────────── */
+    .address-block {
+      background: var(--gray-05);
+      border: 1px solid var(--gray-20);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-top: 1rem;
+    }
+    .address-block strong { display: block; margin-bottom: 0.3rem; color: var(--black); }
+
+    /* ── Footer ───────────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.55);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      font-size: 0.82rem;
+      margin-top: 1rem;
+    }
+    footer .footer-logo {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 0.6rem;
+    }
+    footer a { color: rgba(255,255,255,0.5); }
+    footer a:hover { color: var(--orange); text-decoration: none; }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.6rem;
+    }
+
+    /* ── People grid (headshots) ──────────────────────────── */
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 1.6rem 1rem;
+      margin: 1.2rem 0;
+    }
+    .person-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .headshot {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.55rem;
+      border: 2px solid var(--gray-20);
+    }
+    .person-name { font-weight: 700; font-size: 0.88rem; line-height: 1.3; }
+    .person-inst { color: var(--gray-60); font-size: 0.8rem; margin-top: 0.1rem; }
+
+    /* ── Wide sponsor (AI Lab) ────────────────────────────── */
+    .sponsor-item.wide img {
+      max-height: 48px;
+      max-width: 320px;
+    }
+
+    /* ── Footer Princeton logo ────────────────────────────── */
+    .footer-pu {
+      margin-bottom: 1rem;
+    }
+    .footer-pu img {
+      height: 28px;
+      width: auto;
+      opacity: 0.75;
+    }
+    .footer-pu img:hover { opacity: 1; }
+
+    /* ── Responsive tweaks ────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero { height: 360px; }
+      .hero-content { padding: 0 1.5rem 2rem; }
+      .topbar-nav a { padding: 0 0.5rem; font-size: 0.68rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Top navigation ──────────────────────────────────── -->
+<nav class="topbar">
+  <a class="topbar-logo" href="/">NESCW 2026</a>
+  <div class="topbar-nav">
+    <a href="#about">About</a>
+    <a href="#registration">Registration</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#location">Location</a>
+    <a href="#lab-tours">Lab Tours</a>
+    <a href="#organizers">Organizers</a>
+    <a href="#contact">Contact</a>
+    <a href="/2025/" class="past">2025 ↗</a>
+  </div>
+</nav>
+
+<!-- ── Hero ────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">3rd Annual Workshop</div>
+    <h1 class="hero-title">Northeast Systems<br>and Control Workshop</h1>
+    <div class="hero-meta">
+      <span>Saturday, May 2, 2026</span>
+      <span class="sep">·</span>
+      <span>Robertson Hall, Princeton University</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── Main content ────────────────────────────────────── -->
+<main class="page">
+
+  <!-- Intro -->
+  <div class="intro">
+    <p>
+      We invite you to the <strong>3rd annual Northeast Systems and Control Workshop (NESCW)</strong>,
+      hosted this year at Princeton University. Following two successful editions at Penn (2024)
+      and Columbia (2025), each drawing over 100 participants from 20+ institutions,
+      NESCW continues to grow as the gathering place for the systems and control community across the Northeast.
+    </p>
+    <div class="stat-row">
+      <span class="stat-pill">Free registration</span>
+      <span class="stat-pill">Travel support available</span>
+    </div>
+    <div class="callout">
+      NESCW is built around graduate students and postdocs: every talk and every poster is theirs.
+    </div>
+    <p>
+      Registration is free and open to all.
+      <a href="https://www.eventbrite.com/e/northeast-systems-and-control-workshop-tickets-1983457279115" target="_blank" class="btn" style="margin-left:0.8rem; font-size:0.88rem; padding:0.5rem 1.2rem;">Register now →</a>
+    </p>
+  </div>
+
+  <!-- News & Updates -->
+  <section id="news">
+    <div class="section-label">Latest</div>
+    <h2>News &amp; Updates</h2>
+    <ul>
+      <li>
+        <strong>Registration is now open!</strong>
+        <a href="https://www.eventbrite.com/e/northeast-systems-and-control-workshop-tickets-1983457279115" target="_blank">Register here.</a>
+        Submit your talk abstract or poster proposal by <strong>Monday, April 6</strong> for full consideration for spotlight talks and travel support.
+      </li>
+    </ul>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="section-label">About the Workshop</div>
+    <h2>About</h2>
+    <p>
+      The <strong>Northeast Systems and Control Workshop (NESCW)</strong> provides a forum for systems and
+      control researchers across the Northeast to present their work and connect with graduate students,
+      postdoctoral scholars, and faculty in an informal and collaborative setting.
+      Any member of the systems and control community in the broader Northeast region is welcome to participate.
+    </p>
+    <p>
+      Research areas span the full breadth of systems and control: dynamics, control theory, optimization,
+      machine learning, robotics, and cyber-physical systems, including applied and interdisciplinary work at their intersections.
+    </p>
+    <p>
+      To build community across the region, NESCW rotates to a different host institution each year.
+      Host institutions join the steering committee, creating a growing network of organizers
+      who help shape the workshop's future.
+    </p>
+
+    <div class="photo-row">
+      <div class="photo-row-item">
+        <img src="assets/photos/photo-crowd.jpg" alt="Attendees at the NESCW 2025 poster session"
+             onerror="this.parentElement.style.background='#e8e8e8'">
+      </div>
+      <div class="photo-row-item">
+        <img src="assets/photos/photo-poster.jpg" alt="Student presenting research at NESCW 2025"
+             onerror="this.parentElement.style.background='#d8d8d8'">
+      </div>
+      <div class="photo-row-item">
+        <img src="assets/photos/photo-social.jpg" alt="Social event at NESCW 2025"
+             onerror="this.parentElement.style.background='#c8c8c8'">
+      </div>
+    </div>
+    <p class="photo-caption">Photos from NESCW 2025 at Columbia University.</p>
+
+    <h3>Contributed Talks and Posters</h3>
+    <p>
+      There will be four oral sessions, each composed of 4 × 15-minute talks, for a total of 16 talks.
+      Talk proposals are reviewed and selected by the NESCW steering committee based on submitted abstracts.
+    </p>
+    <p>
+      Poster presentations are unlimited (subject to venue capacity).
+      The morning and afternoon poster sessions will be broadly themed by research area.
+    </p>
+    <div class="callout">
+      All talks and poster presentations are by students and postdoctoral scholars,
+      with the goal of providing visibility to early-career researchers.
+    </div>
+  </section>
+
+  <!-- Registration -->
+  <section id="registration">
+    <div class="section-label">How to Participate</div>
+    <h2>Registration</h2>
+    <p>
+      Registration is <strong>free for all participants</strong>. A light breakfast, lunch,
+      and refreshments will be provided.
+    </p>
+    <p>
+      To submit a talk proposal, simply include a short abstract (~100 words) when you register —
+      the process is lightweight and takes only a few minutes.
+      We aim to provide <strong>travel support</strong> for participants from under-resourced groups
+      and institutions, to make NESCW as broadly accessible as possible.
+    </p>
+    <a href="https://www.eventbrite.com/e/northeast-systems-and-control-workshop-tickets-1983457279115"
+       target="_blank" class="btn">Register on Eventbrite →</a>
+
+    <h3>Key Dates</h3>
+    <table class="key-dates">
+      <tbody>
+        <tr>
+          <td class="col-date">Mon, Apr 6</td>
+          <td class="col-name">Early Registration Deadline</td>
+          <td class="col-desc">Register by this date to be fully considered for spotlight talks and travel support.</td>
+        </tr>
+        <tr>
+          <td class="col-date">Mon, Apr 13</td>
+          <td class="col-name">Main Registration Deadline</td>
+          <td class="col-desc">Register by this date to be fully considered for a poster presentation.</td>
+        </tr>
+        <tr>
+          <td class="col-date">Mon, Apr 20</td>
+          <td class="col-name">Notifications</td>
+          <td class="col-desc">Talk, poster, and travel support decisions communicated to all registrants.</td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="col-date">Sat, May 2</td>
+          <td class="col-name">Workshop Day!</td>
+          <td class="col-desc">Robertson Hall, Princeton University.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Location -->
+  <section id="location">
+    <div class="section-label">Getting Here</div>
+    <h2>Location</h2>
+    <img src="assets/photos/princeton-aerial.jpg" alt="Princeton University campus aerial view" class="location-photo">
+    <div class="two-col">
+      <div>
+        <p>
+          The workshop will be held at <strong>Robertson Hall</strong>, home of the
+          Princeton School of Public and International Affairs (SPIA), on the main Princeton campus
+          in Princeton, New Jersey.
+        </p>
+
+        <h3>Getting to campus</h3>
+        <p>
+          The easiest way to reach Princeton is by train.
+          NJ Transit's <strong>Princeton Junction</strong> station is served by the Northeast
+          Corridor line from both New York Penn Station and Philadelphia. From Princeton Junction,
+          a short shuttle ("Dinky") connects directly to Princeton's main campus.
+        </p>
+        <p>
+          If driving, please note that parking on and around campus is limited.
+          Several paid lots are available nearby.
+        </p>
+      </div>
+      <div>
+        <div class="address-block">
+          <strong>Venue Address</strong>
+          Robertson Hall<br>
+          Princeton School of Public and<br>
+          International Affairs<br>
+          Princeton University<br>
+          Princeton, NJ 08544
+        </div>
+        <iframe class="map-embed"
+          src="https://maps.google.com/maps?q=Robertson+Hall+Princeton+University+Princeton+NJ&z=16&output=embed"
+          allowfullscreen loading="lazy" title="Robertson Hall map"
+          style="border:0;"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lab Tours -->
+  <section id="lab-tours">
+    <div class="section-label">See Princeton Research</div>
+    <h2>Lab Tours</h2>
+    <p>
+      One of the highlights of NESCW is the chance to see world-class research facilities from up close.
+      We are excited to show you around some of Princeton's flagship labs, where systems and control are enabling groundbreaking science and engineering research!
+    </p>
+    <div class="lab-cards">
+      <div class="lab-card">
+        <h3>Princeton Robotics Center</h3>
+        <p>
+          Come see where Princeton students and researchers are pushing the limits of what robots can do.
+          The freshly launched Princeton Robotics Center brings together work across the full spectrum of robotics,
+          from physical design to learning and control, all under one roof.
+        </p>
+      </div>
+      <div class="lab-card">
+        <h3>Princeton AI Lab</h3>
+        <p>
+          Princeton's AI research draws a straight line from Alan Turing and John von Neumann to today's
+          most pressing open problems. Nimble, high-intensity teams across engineering, science,
+          and the humanities work without the logistical barriers that slow larger institutions down.
+        </p>
+      </div>
+    </div>
+    <p><em>We are finalizing additional lab tour options — more details coming soon. Tour sign-up will be available closer to the event.</em></p>
+  </section>
+
+  <!-- Schedule -->
+  <section id="schedule">
+    <div class="section-label">Program</div>
+    <h2>Workshop Schedule</h2>
+    <p><em>Tentative — subject to minor adjustments.</em></p>
+    <table class="schedule">
+      <tbody>
+        <tr><td class="col-time">8:00–9:00am</td><td>Check-in and light breakfast</td></tr>
+        <tr><td class="col-time">9:00–9:15am</td><td>Welcome and opening remarks</td></tr>
+        <tr><td class="col-time">9:15–10:15am</td><td>Talks: Session 1</td></tr>
+        <tr><td class="col-time">10:15–11:15am</td><td>Morning poster session and coffee break</td></tr>
+        <tr><td class="col-time">11:15am–12:15pm</td><td>Talks: Session 2</td></tr>
+        <tr><td class="col-time">12:15–2:00pm</td><td>Lunch</td></tr>
+        <tr><td class="col-time">1:00–2:00pm</td><td>Lab tours <em>(subject to space and availability)</em></td></tr>
+        <tr><td class="col-time">2:00–3:00pm</td><td>Talks: Session 3</td></tr>
+        <tr><td class="col-time">3:00–4:00pm</td><td>Afternoon poster session and coffee break</td></tr>
+        <tr><td class="col-time">4:00–5:00pm</td><td>Talks: Session 4</td></tr>
+        <tr><td class="col-time">5:00–6:30pm</td><td>Social event <em>(location TBD)</em></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Organizers -->
+  <section id="organizers">
+    <div class="section-label">Meet the Team</div>
+    <h2>NESCW Organizers</h2>
+
+    <h3>Organizing Committee</h3>
+    <div class="people-grid">
+      <div class="person-card">
+        <img class="headshot" src="assets/headshots/Jaime-circle.png" alt="Jaime Fernández Fisac">
+        <div class="person-name">Jaime Fernández Fisac</div>
+        <div class="person-inst">Princeton University</div>
+      </div>
+      <div class="person-card">
+        <img class="headshot" src="assets/headshots/James-circle.png" alt="James Anderson">
+        <div class="person-name">James Anderson</div>
+        <div class="person-inst">Columbia University</div>
+      </div>
+      <div class="person-card">
+        <img class="headshot" src="assets/headshots/Sarah-circle.png" alt="Sarah Dean">
+        <div class="person-name">Sarah Dean</div>
+        <div class="person-inst">Cornell University</div>
+      </div>
+      <div class="person-card">
+        <img class="headshot" src="assets/headshots/Andrea-circle.png" alt="Andrea Bajcsy">
+        <div class="person-name">Andrea Bajcsy</div>
+        <div class="person-inst">Carnegie Mellon University</div>
+      </div>
+    </div>
+
+    <h3>Advisory Committee</h3>
+    <div class="people-grid" style="max-width: 160px;">
+      <div class="person-card">
+        <img class="headshot" src="assets/headshots/Nik-circle.png" alt="Nikolai Matni">
+        <div class="person-name">Nikolai Matni</div>
+        <div class="person-inst">University of Pennsylvania</div>
+      </div>
+    </div>
+
+    <h3>Princeton Logistics Team</h3>
+    <div class="logistics-row">
+      <span>Gina Palmisano</span>
+      <span>Jayana Kenana</span>
+      <span>Remi Moss</span>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-label">Get in Touch</div>
+    <h2>Contact</h2>
+    <p>
+      If you have any questions, please email Jaime Fernández Fisac at
+      <a href="mailto:jfisac@princeton.edu">jfisac@princeton.edu</a>.
+    </p>
+  </section>
+
+  <!-- Sponsors -->
+  <section id="sponsors">
+    <div class="section-label">With Support From</div>
+    <h2>Sponsors</h2>
+    <div class="sponsors-grid">
+
+      <div class="sponsor-item">
+        <a href="https://engineering.princeton.edu" target="_blank">
+          <img src="assets/logos/princeton-engineering.svg" alt="Princeton Engineering">
+        </a>
+      </div>
+
+      <div class="sponsor-item">
+        <a href="https://ece.princeton.edu" target="_blank">
+          <img src="assets/logos/ece-shield.svg" alt="Princeton Electrical and Computer Engineering">
+        </a>
+      </div>
+
+      <div class="sponsor-item">
+        <a href="https://robotics.princeton.edu" target="_blank">
+          <img src="assets/logos/robotics-1.png" alt="Princeton Robotics">
+        </a>
+      </div>
+
+      <div class="sponsor-item wide">
+        <a href="https://ai.princeton.edu" target="_blank">
+          <img src="assets/logos/ai-lab.png" alt="Princeton AI Lab"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span style="display:none; font-weight:700; font-size:0.85rem;">AI at Princeton</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ───────────────────────────────────────────── -->
+<footer>
+  <div class="footer-pu">
+    <a href="https://princeton.edu" target="_blank">
+      <img src="assets/logos/princeton-university-white.svg" alt="Princeton University">
+    </a>
+  </div>
+  <div class="footer-logo">Northeast Systems and Control Workshop</div>
+  <div>Princeton University &nbsp;·&nbsp; May 2, 2026</div>
+  <div class="footer-links">
+    <a href="/2025/">NESCW 2025 (Columbia)</a>
+    <a href="https://nescw.seas.upenn.edu" target="_blank">NESCW 2024 (Penn)</a>
+    <a href="mailto:jfisac@princeton.edu">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
