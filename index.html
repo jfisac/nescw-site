@@ -17,6 +17,7 @@
       --black:        #1a1a1a;
       --gray-90:      #2d2d2d;
       --gray-60:      #666;
+      --gray-40:      #a4a4a4;
       --gray-20:      #e8e8e8;
       --gray-05:      #f7f7f7;
       --white:        #ffffff;
@@ -166,6 +167,7 @@
     .stat-row {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 0.75rem;
       margin: 1.5rem 0 1rem;
     }
@@ -183,14 +185,23 @@
 
     /* ── Callout box ──────────────────────────────────────── */
     .callout {
-      background: var(--gray-05);
-      border-left: 4px solid var(--orange);
-      padding: 0.9rem 1.2rem;
-      margin: 1.2rem 0;
+      border: 0.5px solid var(--gray-60);
+      border-top: 2.5px solid var(--orange);
+      border-radius: var(--radius);
+      padding: 0.95rem 1.2rem;
+      margin: 1.4rem auto;
       font-size: 1rem;
-      font-style: italic;
       color: var(--gray-90);
-      border-radius: 0 var(--radius) var(--radius) 0;
+      transition: box-shadow 0.2s;
+      text-align: center;
+      width: 80%;
+    }
+    .callout:hover { box-shadow: var(--shadow); }
+    .callout p {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--gray-90);
+      margin-bottom: 1rem;
     }
 
     /* ── Section ──────────────────────────────────────────── */
@@ -579,9 +590,11 @@
     <div class="stat-row">
       <span class="stat-pill">Free registration</span>
       <span class="stat-pill">Travel support available</span>
+      <span class="stat-pill">100+ registered</span>
     </div>
     <div class="callout">
-      NESCW is built around graduate students and postdocs: every talk and every poster is theirs.
+        <p><strong>Early-career focus</strong> </p>
+        All talks at NESCW are by graduate students and postdocs.
     </div>
     <p>
       Registration is free and open to all.
@@ -595,9 +608,15 @@
     <h2>News &amp; Updates</h2>
     <ul>
       <li>
-        <strong>Registration is now open!</strong>
-        <a href="https://www.eventbrite.com/e/northeast-systems-and-control-workshop-tickets-1983457279115" target="_blank">Register here.</a>
-        Submit your talk abstract or poster proposal by <strong>Monday, April 6</strong> for full consideration for spotlight talks and travel support.
+        <strong>Early deadline extended to Friday, April 10.</strong>
+        We've had an incredible response so far, with over 100 early registrations.
+        If you've been meaning to sign up and submit a proposal,
+        you now have until April 10 to be fully considered for a spotlight talk and travel support.
+        <a href="https://www.eventbrite.com/e/northeast-systems-and-control-workshop-tickets-1983457279115" target="_blank">Register now!</a>
+      </li>
+      <li>
+        <strong>Main registration deadline: Monday, April 13.</strong>
+        Register by this date to submit a poster proposal.
       </li>
     </ul>
   </section>
@@ -618,7 +637,7 @@
     </p>
     <p>
       To build community across the region, NESCW rotates to a different host institution each year.
-      Host institutions join the steering committee, creating a growing network of organizers
+      Faculty from across institutions join the steering committee, creating a growing network of organizers
       who help shape the workshop's future.
     </p>
 
@@ -641,15 +660,15 @@
     <h3>Contributed Talks and Posters</h3>
     <p>
       There will be four oral sessions, each composed of 4 × 15-minute talks, for a total of 16 talks.
-      Talk proposals are reviewed and selected by the NESCW steering committee based on submitted abstracts.
+      Talk proposals are reviewed and selected by the organizing committee based on submitted abstracts.
     </p>
     <p>
       Poster presentations are unlimited (subject to venue capacity).
       The morning and afternoon poster sessions will be broadly themed by research area.
     </p>
     <div class="callout">
-      All talks and poster presentations are by students and postdoctoral scholars,
-      with the goal of providing visibility to early-career researchers.
+      <p><strong>Lit by field's rising stars</strong></p>
+      NESCW's unique energy comes from having graduate students and postdocs at the center stage, driving the research conversation throughout the day.
     </div>
   </section>
 
@@ -674,7 +693,7 @@
     <table class="key-dates">
       <tbody>
         <tr>
-          <td class="col-date">Mon, Apr 6</td>
+          <td class="col-date">Thu, Apr 10</td>
           <td class="col-name">Early Registration Deadline</td>
           <td class="col-desc">Register by this date to be fully considered for spotlight talks and travel support.</td>
         </tr>

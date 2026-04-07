@@ -175,15 +175,18 @@
 
     /* ── Callout box ──────────────────────────────────────── */
     .callout {
-      background: var(--gray-05);
-      border-left: 4px solid var(--blue);
-      padding: 0.9rem 1.2rem;
-      margin: 1.2rem 0;
+      border: 0.5px solid var(--gray-60);
+      border-top: 2.5px solid var(--blue);
+      border-radius: var(--radius);
+      padding: 0.95rem 1.2rem;
+      margin: 1.4rem auto;
       font-size: 1rem;
-      font-style: italic;
       color: var(--gray-90);
-      border-radius: 0 var(--radius) var(--radius) 0;
+      transition: box-shadow 0.2s;
+      text-align: center;
+      width: 80%;
     }
+    .callout:hover { box-shadow: var(--shadow); }
 
     /* ── Section ──────────────────────────────────────────── */
     section {
